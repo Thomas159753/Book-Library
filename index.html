@@ -44,7 +44,7 @@
                 </div>
 
             </div>
-            <button role="button">Add Book</button>
+            <button class="green_button">Add Book</button>
         </div>
 
         <div class="library-main">
@@ -52,11 +52,25 @@
         </div>
 
         <div class="add_popup">
-            <div>
-                <h2>Add Book</h2>
-            </div>
-            <div class="content">
+            <div class="popup_content">
+                <div>
+                    <h2>Add Book</h2>
+                </div>
 
+                <form>
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required maxlength="50">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" name="author" required maxlength="50">
+                    <label for="total_pages">Total Pages</label>
+                    <input type="number" id="total_pages" name="total_pages" required min="1" max="999">
+                    <label for="completed_pages">Completed Pages</label>
+                    <input type="number" id="completed_pages" name="completed_pages" required min="1" max="999">
+                    <div class="form_buttons">
+                        <button class="green_button" id="submit" type="submit" value="submit">Submit</button>
+                        <button class="red_button" id="cancel" type="reset" value="cancel">Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
 
