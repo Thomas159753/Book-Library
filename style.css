@@ -7,10 +7,10 @@
 }
 
 /* Text Styles */
-.library-header, .library-sidebar,.add_popup, input{
+.library-header, .library-sidebar,.add_popup, input, .book{
     color: white;
 }
-.info{
+.info, .book{
     font-size: 1.6vh;
 }
 h1{
@@ -22,6 +22,13 @@ h2{
     font-size: 2.7vh;
 }
 
+h3{
+    font-size: 2.1vh;
+}
+
+h4{
+    font-size: 1.8vh;
+}
 label, input{
     font-size: 1.9vh;
 }
@@ -149,7 +156,36 @@ label, input{
 .library-main{
     background: rgb(28,5,14);
     background: linear-gradient(0deg, rgba(28,5,14,1) 0%, rgba(85,13,35,1) 100%);
-    
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+    grid-template-rows: repeat(2, 400px);
+    gap: 3vh;
+    padding-left: 1em;
+    padding-top: 1em;
+}
+
+.book{
+    height: 400px;
+    background: rgb(76,29,149);
+    background: radial-gradient(circle, rgba(76,29,149,1) 0%, rgba(0,0,0,1) 90%);
+    border-radius: 2vh;
+    box-shadow: -1px 1px 22px 10px rgba(76,29,149,0.75);
+    -webkit-box-shadow: -1px 1px 22px 10px rgba(76,29,149,0.75);
+    -moz-box-shadow: -1px 1px 22px 10px rgba(76,29,149,0.75);
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+}
+
+.book div:first-of-type{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book div:nth-child(2){
+    display: grid;
+    grid-template-rows: repeat(auto-fit, 3vh);
+    padding: 1vh;
 }
 
 /* pop-up */
@@ -165,7 +201,7 @@ label, input{
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.8);
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 
 .popup_content{
