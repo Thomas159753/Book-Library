@@ -59,12 +59,6 @@ label, input{
     box-shadow: rgba(27, 31, 35, .1) 0 0 0 3px;
     outline: none;
 }
-.green_button:disabled {
-    background-color: #0c7d10;
-    border-color: rgba(27, 31, 35, .1);
-    color: rgba(255, 255, 255, .8);
-    cursor: default;
-}
 .green_button:active {
     background-color: #0c7d10;
     box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
@@ -96,12 +90,6 @@ label, input{
 .red_button:focus {
     box-shadow: rgba(27, 31, 35, .1) 0 0 0 3px;
     outline: none;
-}
-.red_button:disabled {
-    background-color: #0c7d10;
-    border-color: rgba(27, 31, 35, .1);
-    color: rgba(255, 255, 255, .8);
-    cursor: default;
 }
 .red_button:active {
     background-color: #7d0c1f;
@@ -173,7 +161,7 @@ label, input{
     -webkit-box-shadow: -1px 1px 22px 10px rgba(76,29,149,0.75);
     -moz-box-shadow: -1px 1px 22px 10px rgba(76,29,149,0.75);
     display: grid;
-    grid-template-rows: 1fr 3fr;
+    grid-template-rows: 1fr 2fr 1fr;
 }
 
 .book div:first-of-type{
@@ -184,8 +172,76 @@ label, input{
 
 .book div:nth-child(2){
     display: grid;
-    grid-template-rows: repeat(auto-fit, 3vh);
-    padding: 1vh;
+    grid-template-rows: repeat(auto-fit);
+    padding: 0vh 0vh 0vh 2vh;
+    align-items: center;
+}
+
+.book div:nth-child(3){
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    align-items: center;
+}
+
+.edit {
+    width: 4.2em;
+    height: 2.3em;
+    background-color: #0c7d10;
+    border-radius: 12px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-size: 27px;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+}
+.edit:focus:not(:focus-visible):not(.focus-visible) {
+    box-shadow: none;
+    outline: none;
+}
+.edit:hover {
+    background-color: #095e0c;
+}
+.edit:focus {
+    box-shadow: rgba(27, 31, 35, .1) 0 0 0 3px;
+    outline: none;
+}
+.edit:active {
+    background-color: #0c7d10;
+    box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+.delete {
+    width: 4.2em;
+    height: 2.3em;
+    background-color: #7d0c1f;
+    border-radius: 12px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-size: 27px;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+}
+.delete:focus:not(:focus-visible):not(.focus-visible) {
+    box-shadow: none;
+    outline: none;
+}
+.delete:hover {
+    background-color: #5e0921;
+}
+.delete:focus {
+    box-shadow: rgba(27, 31, 35, .1) 0 0 0 3px;
+    outline: none;
+}
+.delete:active {
+    background-color: #7d0c1f;
+    box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
 }
 
 /* pop-up */

@@ -1,5 +1,9 @@
 const libraryMain = document.querySelector(".library-main");
 const popup = document.querySelector(".add_popup");
+const bookInfo = document.getElementById("total_books");
+const PagesInfo = document.getElementById("total_pages");
+const CompleteBookInfo = document.getElementById("completed_books");
+const OngoingBooksInfo = document.getElementById("ongoing_books");
 let myLibrary = [];
 
 const addBook = document
@@ -19,15 +23,18 @@ const submitButton = document
 .addEventListener('click', (e) => {
     e.preventDefault();
     createbook();
+    updateInfo();
+    popup.style.visibility = "hidden";
+    createEventListener()
 })
 
 function createbook(){
     form = Array.from(document.querySelectorAll("#book_data input")).reduce((acc, input) =>({...acc, [input.id]: input.value}), {});
     // book = Object.assign({}, form)
     // myLibrary.push(book)
-    const newbook = new book (form.title, form.author, form.total_pages, form.completed_pages)
-    myLibrary.push(newbook)
-    newbook.appendBook(newbook)
+    const newbook = new book (form.title, form.author, form.total_pages, form.completed_pages);
+    myLibrary.push(newbook);
+    newbook.appendBook(newbook);
 }
 
 function book(title, author, total_pages, completed_pages){ // dont think i need this but just in case
@@ -52,7 +59,31 @@ book.prototype.appendBook = (newbook) =>{
         <p>${newbook.total_pages}</p>
         <h4>Completed Pages:</h4>
         <p>${newbook.completed_pages}</p>
+    </div>
+    <div>
+    <button class="edit" id="edit">Edit</button>
+    <button class="delete" id="delete">Delete</button>
     </div>`)
 
     libraryMain.append(booknode);
+}
+
+function updateInfo (){
+    bookInfo.innerHTML = 0
+    PagesInfo.innerHTML = 0
+    CompleteBookInfo.innerHTML = 0
+    for(i = 0; i < myLibrary.length; i++){
+        bookInfo.innerHTML++
+        PagesInfo.innerHTML = +PagesInfo.innerHTML + +myLibrary[i].total_pages;
+        CompleteBookInfo.innerHTML = +CompleteBookInfo.innerHTML + +myLibrary[i].completed_pages;
+    }
+}
+
+function createEventListener() {
+const EditButton = document
+.getElementById("edit")
+.addEventListener("click", () => {
+    popup.style.visibility = "visible";
+    Array.from(document.querySelectorAll("#book_data input")).reduce((acc, input) =>({...acc, [input.id]: this.value}), {})
+})
 }
