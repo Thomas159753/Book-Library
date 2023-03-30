@@ -50,7 +50,7 @@ book.prototype.appendBook = (newbook) =>{
     booknode.classList.add("book");
     booknode.innerHTML = (`
     <div>
-        <h3>${newbook.title}</h3>
+        <h3 class="title">${newbook.title}</h3>
     </div>
     <div>
         <h4>Author:</h4>
@@ -61,8 +61,8 @@ book.prototype.appendBook = (newbook) =>{
         <p>${newbook.completed_pages}</p>
     </div>
     <div>
-    <button class="edit" id="edit">Edit</button>
-    <button class="delete" id="delete">Delete</button>
+    <button class="edit"">Edit</button>
+    <button class="delete">Delete</button>
     </div>`)
 
     libraryMain.append(booknode);
@@ -80,10 +80,14 @@ function updateInfo (){
 }
 
 function createEventListener() {
-const EditButton = document
-.getElementById("edit")
-.addEventListener("click", () => {
-    popup.style.visibility = "visible";
-    Array.from(document.querySelectorAll("#book_data input")).reduce((acc, input) =>({...acc, [input.id]: this.value}), {})
-})
-}
+   title = document.getElementsByClassName("title").innerText
+   console.log(title)
+    Array.from(document.getElementsByClassName("edit")).forEach(function(button) {
+      button.addEventListener("click", function() {
+        let editObject = myLibrary.find((obj) => obj.title === title.innerHTML);
+        console.log(editObject)
+      });
+    });
+  }
+
+  
