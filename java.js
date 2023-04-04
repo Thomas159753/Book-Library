@@ -14,32 +14,37 @@ let myLibrary = [];
 const addBook = document
 .getElementById("add_book")
 .addEventListener("click", () => {
-    popup.style.visibility = "visible";
+    clearForm()
 })
 
 const cancelButton = document
 .getElementById("cancel")
 .addEventListener("click", () => {
-    popup.style.visibility = "hidden";
+    clearForm()
 })
 
-const submitButton = document
-.getElementById("submit")
-.addEventListener('click', (e) => {
+const submitButton = document.getElementById("submit");
+submitButton.addEventListener('click', function(e) {   // fix this to a seperate function and make the submitdata and changes
     e.preventDefault();
-    createbook();
-    updateInfo();
-    popup.style.visibility = "hidden";
+    if (submitButton.innerHTML == "Submit Changes"){
+        submitButton.innerHTML = "Submit"
+        clearForm()
+    }
+    else {
+        createbook();
+        updateInfo();
+        clearForm()
+    }
 })
 
 function createbook(){
     let Title = titleForm.value;
     let author = authorForm.value
-    let pages = pagesForm.value
+    let total_pages = pagesForm.value
     let completed_pages = completed_pagesForm.value
     let id = myLibrary.length
     
-    const newbook = new book (Title, author, pages, completed_pages, id);
+    const newbook = new book (Title, author, total_pages, completed_pages, id);
     myLibrary.push(newbook);
     newbook.appendBook(newbook);
 }
@@ -51,7 +56,6 @@ function book(title, author, total_pages, completed_pages, id){
     this.completed_pages = completed_pages;
     this.id = id;
 }
-
 
 book.prototype.appendBook = (newbook) =>{
     let nodeBook = document.createElement("div");
@@ -100,8 +104,6 @@ book.prototype.appendBook = (newbook) =>{
     nodeEditButton.addEventListener("click", function(){
         editPage(newbook)
     })
-
-
 }
 
 function updateInfo (){
@@ -116,5 +118,27 @@ function updateInfo (){
 }
 
 function editPage(bookData){
-    console.log(bookData.id);
+    clearForm()
+    submitButton.innerHTML = "Submit Changes"
+    titleForm.value = bookData.title;
+    authorForm.value = bookData.author;
+    pagesForm.value = bookData.total_pages;
+    completed_pagesForm.value = bookData.completed_pages;
+}
+
+function clearForm(){
+    if (popup.style.visibility == "hidden") {
+    popup.style.visibility = "visible";
+    titleForm.value = ""
+    authorForm.value = ""
+    pagesForm.value = ""
+    completed_pagesForm.value = ""
+    }
+    else{
+        popup.style.visibility = "hidden"
+    }
+}
+
+function submitChanges(){
+    
 }
