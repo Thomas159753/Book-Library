@@ -8,6 +8,7 @@ const titleForm = document.getElementById("title");
 const authorForm = document.getElementById("author");
 const pagesForm = document.getElementById("pages");
 const completed_pagesForm = document.getElementById("completed_pages");
+const formHeader = document.querySelector('.formHeader');
 
 let myLibrary = [];
 
@@ -24,37 +25,28 @@ const cancelButton = document
 })
 
 const submitButton = document.getElementById("submit");
-submitButton.addEventListener('click', function(e) {   // fix this to a seperate function and make the submitdata and changes
+submitButton.addEventListener('click', function submitData(e) {
     e.preventDefault();
     if (submitButton.innerHTML == "Submit Changes"){
         submitButton.innerHTML = "Submit"
+        submitChanges()
         clearForm()
     }
     else {
-        createbook();
+        let newbook = new book (titleForm.value, authorForm.value, pagesForm.value, completed_pagesForm.value);
+        myLibrary.push(newbook);
+        newbook.appendBook(newbook);
         updateInfo();
         clearForm()
     }
 })
 
-function createbook(){
-    let Title = titleForm.value;
-    let author = authorForm.value
-    let total_pages = pagesForm.value
-    let completed_pages = completed_pagesForm.value
-    let id = myLibrary.length
-    
-    const newbook = new book (Title, author, total_pages, completed_pages, id);
-    myLibrary.push(newbook);
-    newbook.appendBook(newbook);
-}
-
-function book(title, author, total_pages, completed_pages, id){ 
+function book(title, author, total_pages, completed_pages){ 
     this.title = title;
     this.author = author;
     this.total_pages = total_pages;
     this.completed_pages = completed_pages;
-    this.id = id;
+    this.id = myLibrary.length;
 }
 
 book.prototype.appendBook = (newbook) =>{
@@ -73,6 +65,7 @@ book.prototype.appendBook = (newbook) =>{
     let nodeDeleteButton = document.createElement("button");
 
     nodeBook.classList.add("book");
+    nodeBook.dataset.id = newbook.id
     nodeEditButton.classList.add("edit");
     nodeDeleteButton.classList.add("delete");
 
@@ -124,6 +117,7 @@ function editPage(bookData){
     authorForm.value = bookData.author;
     pagesForm.value = bookData.total_pages;
     completed_pagesForm.value = bookData.completed_pages;
+    formHeader.textContent = "Edit Book";
 }
 
 function clearForm(){
@@ -140,5 +134,13 @@ function clearForm(){
 }
 
 function submitChanges(){
-    
+    myLibrary.some(bookData=>{
+        if(bookData.id == e.target.parentNode.parentNode.dataset.id){
+            bookData.title = titleForm.value;
+            bookData.author = titleForm.value;
+            bookData.author = authorForm.value;
+            bookData.total_pages = pagesForm.value;
+            bookData.completed_pages = completed_pagesForm.value;
+        }
+    })
 }
