@@ -281,7 +281,7 @@ label, input{
     flex-direction: column;
     align-items: center;
     padding: 1em;
-    gap: 1em;
+    gap: 0.7em;
 }
 
 .form_buttons{
@@ -315,6 +315,11 @@ label{
     text-align: center;
     align-self: center;
 
+}
+
+.checkbox{
+    display: flex;
+    width: 70%;
 }
 
 @media (max-width: 600px) {
