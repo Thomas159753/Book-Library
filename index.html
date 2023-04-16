@@ -59,25 +59,35 @@
 
                 <form id="book_data">
                     <label for="title">Title</label>
-                    <input type="text" id="title" name="title" required maxlength="50">
+                    <input type="text" id="title" name="title" maxlength="50" required>
                     <label for="author">Author</label>
-                    <input type="text" id="author" name="author" required maxlength="50">
+                    <input type="text" id="author" name="author" maxlength="50" required>
                     <label for="pages">Book Pages</label>
-                    <input type="number" id="pages" name="pages" required min="1" max="999">
-                    <label for="completed_pages">Completed Pages</label>
-                    <input type="number" id="completed_pages" name="completed_pages" required min="1" max="999">
+                    <input type="number" id="pages" name="pages" min="1" max="999" required>
+                    <label class="completed_pages_label" for="completed_pages">Completed Pages</label>
+                    <input type="number" id="completed_pages" name="completed_pages" min="1" max="999" required>
                     <div class="checkbox">
                         <label for="read">Finished?</label>
                         <input type="checkbox" id="read_book" name="read_book_check" value="read_book_check">
                     </div>
                     <div class="form_buttons">
-                        <button class="green_button" id="submit" type="submit" value="submit">Submit</button>
-                        <button class="red_button" id="cancel" type="reset" value="cancel">Cancel</button>
+                        <button class="green_button" id="submit" type="submit">Submit</button>
+                        <button class="red_button" id="cancel" type="button">Cancel</button>
                     </div>
                 </form>
             </div>
         </div>
-
+        <div class="confirm_Delete">
+            <div>
+                <div>
+                    <h2 class="formHeader">Delete Book?</h2>
+                </div>
+                <div>
+                    <button class="green_button" id="YesDelete">Yes</button>
+                    <button class="red_button" id="NoDelete">No</button>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

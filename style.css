@@ -7,7 +7,7 @@
 }
 
 /* Text Styles */
-.library-header, .library-sidebar,.add_popup, input, .book{
+.library-header, .library-sidebar,.add_popup, input, .book, .confirm_Delete{
     color: white;
 }
 .info, .book{
@@ -151,7 +151,7 @@ label, input{
     padding-left: 1em;
     padding-top: 1em;
 }
-
+/* book not read  */
 .book{
     height: 400px;
     background: rgb(76,29,149);
@@ -244,6 +244,39 @@ label, input{
     box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
 }
 
+/* book read */
+.bookRead{
+    height: 400px;
+    background: rgb(14,152,69);
+    background: radial-gradient(circle, rgba(14,152,69,1) 0%, rgba(0,0,0,1) 90%);
+    border-radius: 2vh;
+    box-shadow: -1px 1px 22px 10px rgba(14,152,69,0.75);
+    -webkit-box-shadow: -1px 1px 22px 10px rgba(14,152,69,0.75);
+    -moz-box-shadow: -1px 1px 22px 10px rgba(714,152,69,0.75);
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+}
+
+.bookRead div:first-of-type{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bookRead div:nth-child(2){
+    display: grid;
+    grid-template-rows: repeat(auto-fit);
+    padding: 0vh 0vh 0vh 2vh;
+    align-items: center;
+}
+
+.bookRead div:nth-child(3){
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    align-items: center;
+}
+
 /* pop-up */
 
 .add_popup{
@@ -329,3 +362,47 @@ label{
         height: 80vw;
     }
   }
+
+/* delete pop up */
+.confirm_Delete{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    visibility: hidden;
+}
+
+.confirm_Delete > div{
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr;
+    width: 600px;
+    height: 250px;
+    border-radius: 20px;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: rgba(64, 64, 64, 0.8);
+}
+
+.confirm_Delete > div > div:nth-child(2){
+    background: rgb(28,5,14);
+    background: linear-gradient(0deg, rgba(28,5,14,1) 0%, rgba(85,13,35,1) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+}
+
+.confirm_Delete > div > div:nth-child(1){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
