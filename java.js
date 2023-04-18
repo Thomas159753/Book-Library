@@ -13,7 +13,6 @@ const readBookForm = document.getElementById("read_book");
 const confirm_DeleteWindow = document.querySelector(".confirm_Delete");
 
 let selectedBook =""
-
 let myLibrary = [];
 
 const addBook = document // green add book button
@@ -42,6 +41,7 @@ const NoDeletebook = document // delete popup no button tern the window off
 
 const submitButton = document.getElementById("submit"); // checks if it should make a new book or edit it
 submitButton.addEventListener('click', function(e) {
+    removeErrors()
     validate()
     if (submitButton.innerHTML == "Submit Changes" && validate() == true){
         submitButton.innerHTML = "Submit"
@@ -118,7 +118,10 @@ function book(title, author, total_pages, completed_pages, checked){
         nodeButtonDiv.append(nodeEditButton);
         nodeButtonDiv.append(nodeDeleteButton);
 
-        nodeEditButton.addEventListener("click", editPage)// the edit buttons in the books
+        nodeEditButton.addEventListener("click", function(e){
+            removeErrors()
+            editPage(e)
+            })// the edit buttons in the books
         nodeDeleteButton.addEventListener("click",(e) => { // turns on confirm delete pop up window
             selectedBook = e.target.parentNode.parentNode.dataset.id
             confirm_DeleteWindow.style.visibility = "visible";
@@ -152,7 +155,7 @@ function editPage(e){
 
 function deletebook(){ // removes book from library - hides window and makes new cards
     myLibrary.splice(selectedBook, 1);
-    onfirm_DeleteWindow.style.visibility = "hidden";
+    confirm_DeleteWindow.style.visibility = "hidden";
     appendBook();
 }
 
@@ -183,12 +186,48 @@ function submitChanges(){
 // popup stiling line
 
 const completed_pages_label = document.querySelector(".completed_pages_label");
+const title_label = document.querySelector(".title_label");
+const pages_label = document.querySelector(".pages_label");
 
 function validate(){
+
     if (+pagesForm.value < +completed_pagesForm.value){
-        completed_pages_label.textContent = "Complete pages can't be more than Book Pages";
-        completed_pages_label.style.color = "red";
-        return false;
-    } 
-return true
+        completed_pages_label.classList.add("completed_pages_label_error");
+        completed_pagesForm.classList.add("input_error");
+    }
+    if(titleForm.value === ""){
+        title_label.classList.add("title_error");
+        titleForm.classList.add("input_error");
+    }
+    if(pagesForm.value === "" || pagesForm.value <= "0"){
+        pages_label.classList.add("pages_label_error");
+        pagesForm.classList.add("input_error");
+    }
+    if(completed_pagesForm.value === "" || completed_pagesForm.value <= "0"){
+        completed_pages_label.classList.add("completed_pages_label_error2");
+        completed_pagesForm.classList.add("input_error");
+    }
+    // this nightmare checks the pages posabilities
+    if(readBookForm.checked == false && +pagesForm.value == +completed_pagesForm.value && pagesForm.value != "" && completed_pagesForm.value != "" && pagesForm.value > "0" && completed_pagesForm.value > "0"){ 
+        readBookForm.checked = true; // the emty statement is because if you leave it blank 
+    }
+    if(readBookForm.checked == true && +pagesForm.value > +completed_pagesForm.value){
+        readBookForm.checked = false
+    }
+    if(+pagesForm.value < +completed_pagesForm.value || titleForm.value === "" || pagesForm.value === "" || completed_pagesForm.value === "" || pagesForm.value <= "0" || completed_pagesForm.value <= "0"){
+        return false // this line is because if you edit the page the function is useless because you have the true return regardless1
+    }
+    if(+pagesForm.value >= +completed_pagesForm.value && titleForm.value != "" && pagesForm.value != "" && completed_pagesForm.value != ""){
+        return true
+    }
+}
+
+function removeErrors(){
+    title_label.classList.remove("title_error");
+    pages_label.classList.remove("pages_label_error");
+    completed_pages_label.classList.remove("completed_pages_label_error2");
+    completed_pages_label.classList.remove("completed_pages_label_error");
+    completed_pagesForm.classList.remove("input_error");
+    titleForm.classList.remove("input_error");
+    pagesForm.classList.remove("input_error");
 }

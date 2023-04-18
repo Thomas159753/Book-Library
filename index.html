@@ -45,6 +45,7 @@
 
             </div>
             <button class="green_button" id="add_book">Add Book</button>
+            <p>Copyright Thomas Tsiotsias</p>
         </div>
 
         <div class="library-main">
@@ -58,14 +59,14 @@
                 </div>
 
                 <form id="book_data">
-                    <label for="title">Title</label>
-                    <input type="text" id="title" name="title" maxlength="50" required>
+                    <label class="title_label" for="title"></label>
+                    <input type="text" id="title" name="title" maxlength="50">
                     <label for="author">Author</label>
-                    <input type="text" id="author" name="author" maxlength="50" required>
-                    <label for="pages">Book Pages</label>
-                    <input type="number" id="pages" name="pages" min="1" max="999" required>
-                    <label class="completed_pages_label" for="completed_pages">Completed Pages</label>
-                    <input type="number" id="completed_pages" name="completed_pages" min="1" max="999" required>
+                    <input type="text" id="author" name="author" maxlength="50">
+                    <label class="pages_label" for="pages"></label>
+                    <input type="number" id="pages" name="pages" min="1" max="999">
+                    <label class="completed_pages_label" for="completed_pages"></label>
+                    <input type="number" id="completed_pages" name="completed_pages" min="1" max="999">
                     <div class="checkbox">
                         <label for="read">Finished?</label>
                         <input type="checkbox" id="read_book" name="read_book_check" value="read_book_check">

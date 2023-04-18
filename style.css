@@ -406,3 +406,39 @@ label{
     align-items: center;
     justify-content: center;
 }
+
+/* error classes and text*/
+.title_label::before{
+    content: "Title";
+
+}
+.title_error::before{
+    color: red;
+    content: "Title can't be empty";
+}
+            /* ---------------- */
+.pages_label::before{
+    content: "Book Pages";
+
+}
+.pages_label_error::before{
+    color: red;
+    content: "Pages can't be Empty or less than 0";
+}
+            /* ---------------- */
+.completed_pages_label::before{
+    content: "Completed Pages";
+
+}
+.completed_pages_label_error::before{
+    color: red;
+    content: "Completed Pages can't be more than Book Pages";
+}
+.completed_pages_label_error2::before{
+    color: red;
+    content: "Completed Pages can't be Empty or less than 0";
+}
+            /* ---------------- */
+.input_error{
+    border-bottom: solid red;
+}
